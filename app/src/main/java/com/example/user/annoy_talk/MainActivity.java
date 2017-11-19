@@ -79,13 +79,31 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(2);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                switch (tab.getPosition()) {
+                    case 0:
+                        tab.setIcon(R.drawable.user);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.chat);
+                        break;
+                }
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tab.setIcon(R.drawable.user_unselect);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.chat_unselect);
+                        break;
+                }
 
             }
 
