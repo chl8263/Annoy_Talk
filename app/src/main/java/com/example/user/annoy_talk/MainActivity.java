@@ -16,8 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.user.annoy_talk.ui.First_f;
-import com.example.user.annoy_talk.ui.Second_f;
+import com.example.user.annoy_talk.ui.First_Fragment.First_f;
+import com.example.user.annoy_talk.ui.Second_Fragment.Second_f;
 
 public class MainActivity extends AppCompatActivity {
     private final long FINISH_INTERVAL_TIME = 2000;

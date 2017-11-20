@@ -1,4 +1,4 @@
-package com.example.user.annoy_talk.ui;
+package com.example.user.annoy_talk.ui.First_Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,23 +14,22 @@ import com.example.user.annoy_talk.R;
  * Created by User on 2017-11-19.
  */
 
-public class Second_f extends Fragment {
-    public Second_f() {
+public class First_f extends Fragment{
+    public First_f(){
 
     }
-
-    public static Second_f newInstance() {
+    public static First_f newInstance(){
         Bundle args = new Bundle();
-        Second_f fragment = new Second_f();
+        First_f fragment = new First_f();
         fragment.setArguments(args);
         return fragment;
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.second_fragment,container,false);
+        View view = inflater.inflate(R.layout.first_fragment,container,false);
 
         return view;
     }
+
 }
