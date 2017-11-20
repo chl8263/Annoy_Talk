@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()) {
                     case 0:
-                        tab.setIcon(R.drawable.user);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.user);
                         break;
                     case 1:
-                        tab.setIcon(R.drawable.chat);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.chat);
                         break;
                 }
             }
@@ -98,10 +98,11 @@ public class MainActivity extends AppCompatActivity {
             public void onTabUnselected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        tab.setIcon(R.drawable.user_unselect);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.user_no);
+
                         break;
                     case 1:
-                        tab.setIcon(R.drawable.chat_unselect);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.chat_no);
                         break;
                 }
 
