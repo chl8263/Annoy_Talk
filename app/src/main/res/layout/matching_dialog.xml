@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="250dp"
+    android:orientation="vertical"
+    android:background="@color/color_gray"
+
+    >
+
+    <TextView
+        android:textColor="@color/color_black"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="싱대방이 수락하면 매칭이 완료됩니다."
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+
+    <LinearLayout
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/matching_Cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="CANCEL"
+            android:textColor="@color/color_black"
+            android:textSize="10sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_gray" />
+
+        <TextView
+            android:id="@+id/matching_Ok"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="MATCHING"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,12 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_white"
-    >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/first_recyclerView"
-        android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white">
+
+    <TextView
+        android:textColor="@color/color_gray"
+        android:layout_marginLeft="12dp"
+        android:text="나"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         />
-</RelativeLayout>
+    <View
+        android:background="@color/color_gray"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        />
+    <LinearLayout
+        android:layout_margin="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        >
+
+        <ImageView
+            android:id="@+id/first_Myprofile_Image"
+            android:layout_weight="5"
+            app:srcCompat="@drawable/ic_account_circle_black_40dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/first_Myprofile_Name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:text="홍길동"
+            android:textColor="@color/color_black" />
+    </LinearLayout>
+    <View
+        android:background="@color/color_gray"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        />
+    <TextView
+        android:id="@+id/first_tuti_tutor_text"
+        android:textColor="@color/color_gray"
+        android:layout_marginLeft="12dp"
+        android:text="매칭 가능 상대"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
+    <View
+        android:background="@color/color_gray"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/first_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    >
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_height="200dp"
+        android:layout_width="300dp"
+        >
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@color/color_black"
+            android:gravity="center"
+            android:text="닉네임을 입력해 주세요"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
+        <EditText
+            android:textColor="@color/color_black"
+            android:id="@+id/nickname"
+            android:hint="홍길동"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            >
+            <Button
+                android:id="@+id/nickbtn"
+                android:textSize="16sp"
+                android:text="입장"
+                android:layout_centerInParent="true"
+                android:layout_height="55dp"
+                android:layout_width="150dp"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

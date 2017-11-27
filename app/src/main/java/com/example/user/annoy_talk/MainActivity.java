@@ -1,6 +1,7 @@
 package com.example.user.annoy_talk;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,60 +14,51 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.user.annoy_talk.network.Recv_users;
 import com.example.user.annoy_talk.ui.First_Fragment.First_f;
 import com.example.user.annoy_talk.ui.Second_Fragment.Second_f;
+import com.example.user.annoy_talk.util.Contact;
 
 public class MainActivity extends AppCompatActivity {
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
+    private static String myNickname;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private PagerAdapter pagerAdapter;
-
+    private Recv_users recv_users;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initStatusbar();
+        //tinitStatusbar();
+        init();
         initViewPager();
-    }
 
-    private void permissionCheck() {
-        int permissionCheck_writeStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permissionCheck_writeStorage == PackageManager.PERMISSION_DENIED) { //권한 없음
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            }
-        }
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onStop() {
 
+        super.onStop();
 
-        long tempTime = System.currentTimeMillis();
-        long intervalTime = tempTime - backPressedTime;
-        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-            super.onBackPressed();
-        } else {
-            backPressedTime = tempTime;
-            Toast.makeText(getApplicationContext(), "종료하시려면 한번더 눌러주세요", Toast.LENGTH_SHORT).show();
-        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void initStatusbar() {
-        View view = getWindow().getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (view != null) {
-                view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                getWindow().setStatusBarColor(Color.parseColor("#ffc0cb"));
-            }
-        } else getWindow().setStatusBarColor(Color.parseColor("#000"));
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("asdasdsd","asdasdsds");
+    }
+
+    private void init(){
+        Intent intent = getIntent();
+        Contact.myname = intent.getStringExtra("nickname");
+        //recv_users = new Recv_users(getApplicationContext(),recv_listener);
     }
 
     private void initViewPager() {
@@ -124,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return First_f.newInstance();
+                    return First_f.newInstance(Contact.myname);
                 case 1:
                     return Second_f.newInstance();
             }
@@ -136,6 +128,40 @@ public class MainActivity extends AppCompatActivity {
             return 2;
         }
     }
+    private void permissionCheck() {
+        int permissionCheck_writeStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionCheck_writeStorage == PackageManager.PERMISSION_DENIED) { //권한 없음
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            Intent intent = new Intent(Contact.EXIT);
+            sendBroadcast(intent);
+            super.onBackPressed();
+        } else {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "종료하시려면 한번더 눌러주세요", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void initStatusbar() {
+        View view = getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (view != null) {
+                view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                getWindow().setStatusBarColor(Color.parseColor("#ffc0cb"));
+            }
+        } else getWindow().setStatusBarColor(Color.parseColor("#000"));
+    }
+
 }
 
 

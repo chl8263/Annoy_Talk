@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
-    >
+    android:orientation="vertical">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/color_gray"
+        android:textSize="20sp"
+        android:text="매칭된 상대가 없습니다."
+        android:id="@+id/null_second_item"
         android:layout_height="wrap_content"
-        android:text="sss!"
-        android:textColor="@color/color_black"
+        android:layout_width="wrap_content"
         />
-</LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/second_RecyclerView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+</RelativeLayout>
