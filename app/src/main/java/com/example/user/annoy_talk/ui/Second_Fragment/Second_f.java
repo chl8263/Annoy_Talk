@@ -1,5 +1,9 @@
 package com.example.user.annoy_talk.ui.Second_Fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.annoy_talk.R;
+import com.example.user.annoy_talk.util.Contact;
 
 import java.util.ArrayList;
 
@@ -38,6 +43,9 @@ public class Second_f extends Fragment {
         super.onCreate(savedInstanceState);
         items = new ArrayList<S_Recycler_item>();
         s_recycle_adapter = new S_Recycle_Adapter();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Contact.makeChatroom);
+        getContext().registerReceiver(receiver, intentFilter);
     }
 
     @Nullable
@@ -49,4 +57,14 @@ public class Second_f extends Fragment {
         second_recyclerView.setAdapter(s_recycle_adapter);
         return view;
     }
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(Contact.makeChatroom)){
+                String roominfo = intent.getStringExtra("chatinfo");
+                items.add(new S_Recycler_item(roominfo,"a","a"));
+            }
+        }
+    };
+
 }

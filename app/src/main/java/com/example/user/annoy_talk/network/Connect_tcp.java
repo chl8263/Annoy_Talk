@@ -63,6 +63,7 @@ public class Connect_tcp extends Thread{
             dataOutputStream.writeUTF("chatroom");
             dataOutputStream.writeUTF(roominfo);
             Intent intent = new Intent(Contact.makeChatroom);
+            intent.putExtra("chatinfo",roominfo);
             context.sendBroadcast(intent);
         } catch (IOException e) {
             e.printStackTrace();

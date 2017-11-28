@@ -7,7 +7,7 @@ import com.example.user.annoy_talk.network.Connect_tcp;
  */
 
 public class Contact {
-    public static  String serverip="192.168.0.15";
+    public static  String serverip="223.194.158.47";
 
     public static  String EXIT="exit";
     public static String makeChatroom = "chatroom";
