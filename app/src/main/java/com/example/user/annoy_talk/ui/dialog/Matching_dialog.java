@@ -39,7 +39,12 @@ public class Matching_dialog extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.matching_Ok:
-                Contact.connect_tcp.sendChatRoom(Contact.myname+other_name);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Contact.connect_tcp.sendChatRoom(Contact.myname+"/"+other_name+","+Contact.myname+","+other_name);
+                    }
+                }).start();
                 finish();
                 break;
             case R.id.matching_Cancel:

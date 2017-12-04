@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.user.annoy_talk.interfaces.Recv_Listener;
@@ -51,7 +52,11 @@ public class Connect_tcp extends Thread{
                     String users = dataInputStream.readUTF();
                     recv_listener.recv_refresh(users);
                 }else if(check.equals("chatroom")){
-
+                    String users = dataInputStream.readUTF();
+                    Log.e("chatroom",users);
+                    Intent intent = new Intent(Contact.recvChatroom);
+                    intent.putExtra("chatroom",users);
+                    context.sendBroadcast(intent);
                 }
             }
         } catch (IOException e) {
@@ -64,6 +69,15 @@ public class Connect_tcp extends Thread{
             dataOutputStream.writeUTF(roominfo);
             Intent intent = new Intent(Contact.makeChatroom);
             context.sendBroadcast(intent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void sendChat(String chatinfo_roomName,String chatinfo_content){
+        try {
+            dataOutputStream.writeUTF("chat");
+            dataOutputStream.writeUTF(chatinfo_roomName+","+Contact.myname+","+chatinfo_content);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
