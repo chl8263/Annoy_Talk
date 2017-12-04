@@ -57,6 +57,9 @@ public class Connect_tcp extends Thread{
                     Intent intent = new Intent(Contact.recvChatroom);
                     intent.putExtra("chatroom",users);
                     context.sendBroadcast(intent);
+                }else if(check.equals("chat")){
+                    String content = dataInputStream.readUTF();
+                    Log.e("recv___chat",content);
                 }
             }
         } catch (IOException e) {

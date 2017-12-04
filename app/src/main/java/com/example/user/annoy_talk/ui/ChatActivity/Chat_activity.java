@@ -19,13 +19,14 @@ import java.util.ArrayList;
  * Created by choi on 2017-12-04.
  */
 
-public class Chat_activity extends AppCompatActivity implements View.OnClickListener{
+public class Chat_activity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
     private EditText inputText;
     private Button submit;
     String other;
     private ChatActivity_Adapter chatActivity_adapter;
     private ArrayList<Chat_item> items;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,35 +36,36 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
         init();
 
     }
-    private void init(){
-        inputText = (EditText)findViewById(R.id.inputText);
-        submit = (Button)findViewById(R.id.submit);
+
+    private void init() {
+        inputText = (EditText) findViewById(R.id.inputText);
+        submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener((View.OnClickListener) this);
         items = new ArrayList<Chat_item>();
-        recyclerView = (RecyclerView)findViewById(R.id.chat_activity_RecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        chatActivity_adapter = new ChatActivity_Adapter(getApplicationContext(),items);
+        recyclerView = (RecyclerView) findViewById(R.id.chat_activity_RecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        chatActivity_adapter = new ChatActivity_Adapter(getApplicationContext(), items);
         recyclerView.setAdapter(chatActivity_adapter);
-        recyclerView.scrollToPosition(chatActivity_adapter.getItemCount()-1);
+        recyclerView.scrollToPosition(chatActivity_adapter.getItemCount() - 1);
 
-        items.add(new Chat_item("asd",0));
-        items.add(new Chat_item("asd",1));
-        items.add(new Chat_item("asd",0));
-        items.add(new Chat_item("asd",1));
+        items.add(new Chat_item("asd", 0));
+        items.add(new Chat_item("asd", 1));
+        items.add(new Chat_item("asd", 0));
+        items.add(new Chat_item("asd", 1));
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.submit:
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Contact.connect_tcp.sendChat(Contact.myname+"/"+other,inputText.getText().toString());
+                        Contact.connect_tcp.sendChat(Contact.myname + "/" + other ,inputText.getText().toString());
                     }
                 }).start();
 
-
+                inputText.setText("");
                 break;
         }
     }
