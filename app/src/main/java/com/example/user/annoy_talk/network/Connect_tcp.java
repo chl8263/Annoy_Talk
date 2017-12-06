@@ -60,6 +60,9 @@ public class Connect_tcp extends Thread{
                 }else if(check.equals("chat")){
                     String content = dataInputStream.readUTF();
                     Log.e("recv___chat",content);
+                    Intent intent = new Intent(Contact.recvChatContent);
+                    intent.putExtra("recvChatContent",content);
+                    context.sendBroadcast(intent);
                 }
             }
         } catch (IOException e) {

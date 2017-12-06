@@ -5,12 +5,22 @@ package com.example.user.annoy_talk.ui.ChatActivity;
  */
 
 public class Chat_item {
+    private String name;
     private String Content;
     private int viewType;
 
-    public Chat_item(String content, int viewType) {
+    public Chat_item(String name,String content, int viewType) {
+        this.name =name;
         Content = content;
         this.viewType = viewType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getContent() {

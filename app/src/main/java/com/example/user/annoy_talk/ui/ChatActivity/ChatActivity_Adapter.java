@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.user.annoy_talk.R;
+import com.example.user.annoy_talk.util.Contact;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class ChatActivity_Adapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemViewType(int position) {
-        if (items.get(position).getViewType() == VIEW_TYPE_ME) {
+        if (items.get(position).getName().equals(Contact.myname)) {
             return VIEW_TYPE_ME;
         } else {
             return VIEW_TYPE_YOU;
