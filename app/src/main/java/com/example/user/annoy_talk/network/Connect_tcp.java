@@ -63,6 +63,18 @@ public class Connect_tcp extends Thread{
                     Intent intent = new Intent(Contact.recvChatContent);
                     intent.putExtra("recvChatContent",content);
                     context.sendBroadcast(intent);
+                }else if(check.equals("exit")){
+                    String content = dataInputStream.readUTF();
+                    Log.e("recv___exit",content);
+                    Intent intent = new Intent(Contact.EXIT);
+                    intent.putExtra("exit_msg",content);
+                    context.sendBroadcast(intent);
+                }else if(check.equals("lastchat")){
+                    String content = dataInputStream.readUTF();
+                    Log.e("last_chat",content);
+                    Intent intent = new Intent(Contact.lastContent);
+                    intent.putExtra("lastcontent",content);
+                    context.sendBroadcast(intent);
                 }
             }
         } catch (IOException e) {
@@ -89,12 +101,22 @@ public class Connect_tcp extends Thread{
             e.printStackTrace();
         }
     }
+    public void sendinitChat(String chatinfo_roomName){
+        try {
+            dataOutputStream.writeUTF("rechat");
+            dataOutputStream.writeUTF(chatinfo_roomName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void sendExit(){
         try {
             dataOutputStream.writeUTF("exit");
-            socket.close();
+            dataOutputStream.writeUTF(Contact.myname);
+            /*socket.close();
             dataOutputStream.close();
-            dataOutputStream.close();
+            dataOutputStream.close();*/
         } catch (IOException e) {
             e.printStackTrace();
         }

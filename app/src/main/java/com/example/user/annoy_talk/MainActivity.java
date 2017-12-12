@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-
         super.onStop();
 
     }
@@ -52,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e("asdasdsd","asdasdsds");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Contact.connect_tcp.sendExit();
+            }
+        }).start();
+
     }
 
     private void init(){
@@ -142,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
         long tempTime = System.currentTimeMillis();
         long intervalTime = tempTime - backPressedTime;
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-            Intent intent = new Intent(Contact.EXIT);
-            sendBroadcast(intent);
             super.onBackPressed();
         } else {
             backPressedTime = tempTime;

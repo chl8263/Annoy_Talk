@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="12dp">
 
         <!--<ImageView
@@ -16,6 +16,16 @@
             android:tint="@color/color_Main"
             app:srcCompat="@drawable/ic_account_circle_black_40dp" />
 -->
+        <TextView
+            android:text="asd"
+            android:textColor="@color/color_black"
+            android:textSize="16sp"
+            android:id="@+id/otherName"
+            android:paddingLeft="8dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
         <RelativeLayout
 
             android:layout_width="match_parent"

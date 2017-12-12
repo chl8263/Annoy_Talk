@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -19,6 +20,9 @@ public class Matching_dialog extends AppCompatActivity implements View.OnClickLi
     private TextView matching_Cancel;
     private TextView matching_Ok;
     private String other_name;
+    private String other_namesplite[];
+    String a="";
+    String b="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,23 @@ public class Matching_dialog extends AppCompatActivity implements View.OnClickLi
         matching_Ok.setOnClickListener(this);
         matching_Cancel.setOnClickListener(this);
         Intent intent = getIntent();
+
         other_name = intent.getStringExtra("other_name");
+        Log.e("ㅆㅆㅆㅆㅆㅆㅆㅆㅆㅆㅆㅆ",other_name);
+        other_namesplite = other_name.split(",");
+
+        for(int i=0;i<other_namesplite.length;i++){
+            a+=other_namesplite[i];
+            if(i!=other_namesplite.length-1){
+                a+="/";
+            }
+        }
+        for(int i=0;i<other_namesplite.length;i++){
+            b+=other_namesplite[i];
+            if(i!=other_namesplite.length-1){
+                b+=",";
+            }
+        }
     }
     @Override
     public void onClick(View view) {
@@ -42,7 +62,7 @@ public class Matching_dialog extends AppCompatActivity implements View.OnClickLi
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Contact.connect_tcp.sendChatRoom(Contact.myname+"/"+other_name+","+Contact.myname+","+other_name);
+                        Contact.connect_tcp.sendChatRoom(Contact.myname+"/"+a+","+Contact.myname+","+b);
                     }
                 }).start();
                 finish();

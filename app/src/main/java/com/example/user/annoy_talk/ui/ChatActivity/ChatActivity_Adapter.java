@@ -54,6 +54,7 @@ public class ChatActivity_Adapter extends RecyclerView.Adapter<RecyclerView.View
             ((ViewHolder_ME) holder).content.setText(items.get(position).getContent());
         } else {
             ((ViewHolder_OTHER) holder).content.setText(items.get(position).getContent());
+            ((ViewHolder_OTHER) holder).name.setText(items.get(position).getName());
         }
     }
 
@@ -74,10 +75,11 @@ public class ChatActivity_Adapter extends RecyclerView.Adapter<RecyclerView.View
 
     public class ViewHolder_OTHER extends RecyclerView.ViewHolder {
         public TextView content;
-
+        public TextView name;
         public ViewHolder_OTHER(View itemView) {
             super(itemView);
             content = (TextView) itemView.findViewById(R.id.chat_item_content);
+            name = (TextView)itemView.findViewById(R.id.otherName);
 
         }
     }

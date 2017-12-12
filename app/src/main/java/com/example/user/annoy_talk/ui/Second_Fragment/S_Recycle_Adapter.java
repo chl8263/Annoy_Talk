@@ -70,7 +70,6 @@ public class S_Recycle_Adapter extends RecyclerView.Adapter<S_Recycle_Adapter.Vi
                     view.getContext().startActivity(intent);
                     break;
             }
-
         }
     }
 }

@@ -3,14 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:id="@+id/user_name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:layout_weight="5"
-        app:srcCompat="@drawable/ic_account_circle_black_40dp"
-        />
 
     <LinearLayout
         android:id="@+id/first_RecyclerView_item_setClick"
@@ -34,6 +26,7 @@
                 android:layout_weight="1"
                 android:gravity="left|center"
                 android:text="asd"
+                android:textSize="20sp"
                 android:textColor="@color/color_black" />
 
             <RelativeLayout
@@ -62,6 +55,8 @@
         </LinearLayout>
 
         <View
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/color_gray" />

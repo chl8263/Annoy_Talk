@@ -1,11 +1,13 @@
 package com.example.user.annoy_talk.ui.ChatActivity;
 
+import android.animation.Animator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.user.annoy_talk.R;
-import com.example.user.annoy_talk.ui.Second_Fragment.S_Recycler_item;
 import com.example.user.annoy_talk.util.Contact;
 
 import java.util.ArrayList;
@@ -29,19 +30,107 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
     private EditText inputText;
     private Button submit;
     String other;
+    String others[];
+    String all="";
     private ChatActivity_Adapter chatActivity_adapter;
     private ArrayList<Chat_item> items;
-
+    private FloatingActionButton fab,fab1,fab2,fab3;
+    private boolean isFABOpen=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         Intent intent = getIntent();
         other = intent.getStringExtra("other_name");
+        others = other.split(",");
+        for(int i=0;i<others.length;i++){
+            all+=others[i];
+            if(i!=others.length-1){
+                all+="/";
+            }
+        }
         init();
+        init_chat();
+        initFab();
+    }
+    @Override
+    public void onStop() {
+        if(receiver!=null) {
+            unregisterReceiver(receiver);
+            receiver=null;
+        }
+        super.onStop();
 
     }
 
+    private void initFab(){
+        fab=(FloatingActionButton)findViewById(R.id.fab);
+        fab1=(FloatingActionButton)findViewById(R.id.fab1);
+        fab2=(FloatingActionButton)findViewById(R.id.fab2);
+        fab3=(FloatingActionButton)findViewById(R.id.fab3);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isFABOpen){
+                    showFABMenu();
+                }else{
+                    closeFABMenu();
+                }
+            }
+        });
+    }
+    private void showFABMenu(){
+        isFABOpen=true;
+        fab1.setVisibility(View.VISIBLE);
+        fab2.setVisibility(View.VISIBLE);
+        fab3.setVisibility(View.VISIBLE);
+
+        fab.animate().rotationBy(180);
+        fab1.animate().translationY(-55);
+        fab2.animate().translationY(-100);
+        fab3.animate().translationY(-145);
+    }
+
+    private void closeFABMenu(){
+        isFABOpen=false;
+        fab.animate().rotationBy(-180);
+        fab1.animate().translationY(0);
+        fab2.animate().translationY(0);
+        fab3.animate().translationY(0).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if(!isFABOpen){
+                    fab1.setVisibility(View.GONE);
+                    fab2.setVisibility(View.GONE);
+                    fab3.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+    }
+    private void init_chat(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Contact.connect_tcp.sendinitChat(all+"/"+Contact.myname);
+            }
+        }).start();
+    }
     private void init() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Contact.recvChatContent);
@@ -56,10 +145,6 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
         recyclerView.setAdapter(chatActivity_adapter);
         recyclerView.scrollToPosition(chatActivity_adapter.getItemCount() - 1);
 
-        items.add(new Chat_item("asd","asd", 0));
-        items.add(new Chat_item("asd","asd", 1));
-        items.add(new Chat_item("asd","asd", 0));
-        items.add(new Chat_item("asd","asd", 1));
     }
 
     @Override
@@ -69,10 +154,9 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Contact.connect_tcp.sendChat(Contact.myname + "/" + other ,inputText.getText().toString());
+                        Contact.connect_tcp.sendChat(Contact.myname + "/" + all ,inputText.getText().toString());
                     }
                 }).start();
-
                 inputText.setText("");
                 break;
         }

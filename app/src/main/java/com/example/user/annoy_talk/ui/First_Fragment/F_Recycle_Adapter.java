@@ -18,9 +18,9 @@ import java.util.List;
  * Created by choi on 2017-11-20.
  */
 
-public class F_Recycle_Adapter extends RecyclerView.Adapter<F_Recycle_Adapter.ViewHolder>{
+public class F_Recycle_Adapter extends RecyclerView.Adapter<F_Recycle_Adapter.ViewHolder> {
     private Context context;
-    private List<F_Recycler_item> items ;
+    private List<F_Recycler_item> items;
 
     public F_Recycle_Adapter(Context context, List<F_Recycler_item> items) {
         this.context = context;
@@ -30,7 +30,7 @@ public class F_Recycle_Adapter extends RecyclerView.Adapter<F_Recycle_Adapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.first_recycle_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.first_recycle_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,24 +45,24 @@ public class F_Recycle_Adapter extends RecyclerView.Adapter<F_Recycle_Adapter.Vi
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
         public LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.first_RecyclerView_Item_Name);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.matching);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.matching);
             linearLayout.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.matching:
                     int position = getAdapterPosition();
                     Intent intent = new Intent(view.getContext(), Matching_dialog.class);
-                    intent.putExtra("other_name",items.get(position).getName());
+                    intent.putExtra("other_name", items.get(position).getName());
                     view.getContext().startActivity(intent);
                     break;
             }
