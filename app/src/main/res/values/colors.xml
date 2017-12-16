@@ -7,5 +7,5 @@
     <color name="color_white">#FFF</color>
     <color name="color_gray">#c4c4c4</color>
     <color name="color_drakgray">#8b8b8b</color>
-
+    <color name="colorTransBg">#261a1919</color>
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,67 +7,144 @@
     android:orientation="vertical">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/chat_activity_RecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:transcriptMode="alwaysScroll"
-        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
-        android:background="@color/color_gray"
-        android:padding="10dp">
-        <RelativeLayout
-            android:layout_weight="7"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab1"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                />
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab2"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                />
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab3"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                />
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                />
-        </RelativeLayout>
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/chat_activity_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:transcriptMode="alwaysScroll" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/inputText"
-                android:background="@color/color_white"
+            android:layout_height="70dp"
+            android:background="@color/color_drakgray"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:textColor="@color/color_black"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/submit"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-                android:text="전송"
-                android:textColor="@color/color_white"/>
+                <EditText
+                    android:layout_marginLeft="55dp"
+                    android:id="@+id/inputText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/color_white"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="전송"
+                    android:textColor="@color/color_white" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <View
+        android:id="@+id/fabBGLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorTransBg"
+        android:visibility="gone" />
+    <LinearLayout
+        android:id="@+id/fabLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/standard_23"
+        android:layout_marginRight="@dimen/standard_23"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:visibility="gone"
+        app:layout_behavior="com.ajaysinghdewari.floatingactionbuttonmenu.activities.utils.MoveUpwardBehavior">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/video"
+            />
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="영상채팅" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fabLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/standard_23"
+        android:layout_marginRight="@dimen/standard_23"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:visibility="gone"
+        app:layout_behavior="com.ajaysinghdewari.floatingactionbuttonmenu.activities.utils.MoveUpwardBehavior">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/telephone"
+            />
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="음성 채팅" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        app:layout_behavior="com.ajaysinghdewari.floatingactionbuttonmenu.activities.utils.MoveUpwardBehavior">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|end"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            app:srcCompat="@drawable/add"
+
+            />
+    </LinearLayout>
+</RelativeLayout>

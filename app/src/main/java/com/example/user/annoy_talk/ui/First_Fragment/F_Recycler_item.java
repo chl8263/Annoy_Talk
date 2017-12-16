@@ -6,9 +6,13 @@ package com.example.user.annoy_talk.ui.First_Fragment;
 
 public class F_Recycler_item {
     private String name;
+    private String age;
+    private String sex;
 
-    public F_Recycler_item(String name) {
+    public F_Recycler_item(String name, String age, String sex) {
         this.name = name;
+        this.age = age;
+        this.sex = sex;
     }
 
     public String getName() {
@@ -17,5 +21,21 @@ public class F_Recycler_item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

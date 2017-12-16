@@ -3,7 +3,17 @@
     package="com.example.user.annoy_talk">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
@@ -29,6 +39,14 @@
             />
         <activity android:name=".ui.dialog.Matching_dialog"
             android:theme="@style/Theme.AppCompat.Dialog"
+            />
+        <activity android:name=".Streaming.VoiceActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+
+            />
+        <activity android:name=".Streaming.VideoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+
             />
 
     </application>

@@ -37,6 +37,7 @@ public class F_Recycle_Adapter extends RecyclerView.Adapter<F_Recycle_Adapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.name.setText(items.get(position).getName());
+        holder.otherSpeech.setText(items.get(position).getAge()+" , "+items.get(position).getSex());
     }
 
 
@@ -46,12 +47,13 @@ public class F_Recycle_Adapter extends RecyclerView.Adapter<F_Recycle_Adapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView name;
+        public TextView name,otherSpeech;
         public LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.first_RecyclerView_Item_Name);
+            otherSpeech = (TextView) itemView.findViewById(R.id.otherSpeech);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.matching);
             linearLayout.setOnClickListener(this);
         }

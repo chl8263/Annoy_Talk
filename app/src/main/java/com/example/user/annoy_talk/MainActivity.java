@@ -1,6 +1,7 @@
 package com.example.user.annoy_talk;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -30,17 +31,46 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private PagerAdapter pagerAdapter;
     private Recv_users recv_users;
+    private final int MY_PERMISSION_REQUEST_STORAGE = 100;
+    @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //tinitStatusbar();
+        //checkPermission(Contact.PERMISSIONS);
         init();
         initViewPager();
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void checkPermission(String[] permissions) {
 
+        requestPermissions(permissions, MY_PERMISSION_REQUEST_STORAGE);
+    }
+
+
+    // Application permission 23
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSION_REQUEST_STORAGE:
+                int cnt = permissions.length;
+                for (int i = 0; i < cnt; i++) {
+
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+
+                        //Log.i(LOG_TAG, "Permission[" + permissions[i] + "] = PERMISSION_GRANTED");
+
+                    } else {
+
+
+                    }
+                }
+                break;
+        }
+    }
     @Override
     protected void onStop() {
         super.onStop();
@@ -62,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         Intent intent = getIntent();
         Contact.myname = intent.getStringExtra("nickname");
+        Contact.myage = intent.getStringExtra("age");
+        Contact.mysex = intent.getStringExtra("sex");
         //recv_users = new Recv_users(getApplicationContext(),recv_listener);
     }
 
@@ -71,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.user));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.chat));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.chat_no));
         viewPager.setOffscreenPageLimit(2);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

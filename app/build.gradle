@@ -21,6 +21,9 @@ android {
 }
 
 dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/libjingle_peerconnection_heads59r6.jar')
+    compile files('libs/sktplayrtc-client.2.2.12.jar')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.+'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'

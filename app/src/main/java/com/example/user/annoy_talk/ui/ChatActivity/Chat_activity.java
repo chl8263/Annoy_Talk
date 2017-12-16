@@ -15,8 +15,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.user.annoy_talk.R;
+import com.example.user.annoy_talk.Streaming.VideoActivity;
+import com.example.user.annoy_talk.Streaming.VoiceActivity;
 import com.example.user.annoy_talk.util.Contact;
 
 import java.util.ArrayList;
@@ -34,8 +37,12 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
     String all="";
     private ChatActivity_Adapter chatActivity_adapter;
     private ArrayList<Chat_item> items;
+    private LinearLayout fabLayout1, fabLayout2;
     private FloatingActionButton fab,fab1,fab2,fab3;
+    private View fabBGLayout;
     private boolean isFABOpen=false;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +71,14 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initFab(){
+        fabBGLayout=findViewById(R.id.fabBGLayout);
+        fabLayout2 = (LinearLayout) findViewById(R.id.fabLayout2);
+        fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
         fab=(FloatingActionButton)findViewById(R.id.fab);
         fab1=(FloatingActionButton)findViewById(R.id.fab1);
         fab2=(FloatingActionButton)findViewById(R.id.fab2);
-        fab3=(FloatingActionButton)findViewById(R.id.fab3);
+        fab1.setOnClickListener(this);
+        fab2.setOnClickListener(this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,22 +92,21 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
     }
     private void showFABMenu(){
         isFABOpen=true;
-        fab1.setVisibility(View.VISIBLE);
-        fab2.setVisibility(View.VISIBLE);
-        fab3.setVisibility(View.VISIBLE);
+        fabBGLayout.setVisibility(View.VISIBLE);
+        fabLayout1.setVisibility(View.VISIBLE);
+        fabLayout2.setVisibility(View.VISIBLE);
 
-        fab.animate().rotationBy(180);
-        fab1.animate().translationY(-55);
-        fab2.animate().translationY(-100);
-        fab3.animate().translationY(-145);
+        fab.animate().rotationBy(135);
+        fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
+        fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_100));
     }
 
     private void closeFABMenu(){
         isFABOpen=false;
-        fab.animate().rotationBy(-180);
-        fab1.animate().translationY(0);
-        fab2.animate().translationY(0);
-        fab3.animate().translationY(0).setListener(new Animator.AnimatorListener() {
+        fab.animate().rotationBy(-135);
+        fabLayout1.animate().translationY(0);
+        fabLayout2.animate().translationY(0);
+        fabLayout2.animate().translationY(0).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
 
@@ -105,9 +115,8 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onAnimationEnd(Animator animator) {
                 if(!isFABOpen){
-                    fab1.setVisibility(View.GONE);
-                    fab2.setVisibility(View.GONE);
-                    fab3.setVisibility(View.GONE);
+                    fabLayout1.setVisibility(View.GONE);
+                    fabLayout2.setVisibility(View.GONE);
                 }
 
             }
@@ -158,6 +167,16 @@ public class Chat_activity extends AppCompatActivity implements View.OnClickList
                     }
                 }).start();
                 inputText.setText("");
+                break;
+            case R.id.fab1:
+                Intent intent2 = new Intent(getApplicationContext(), VideoActivity.class);
+                intent2.putExtra("other","SEND/"+other);
+                startActivity(intent2);
+                break;
+            case R.id.fab2:
+                Intent intent1 = new Intent(getApplicationContext(), VoiceActivity.class);
+                intent1.putExtra("other","SEND/"+other);
+                startActivity(intent1);
                 break;
         }
     }

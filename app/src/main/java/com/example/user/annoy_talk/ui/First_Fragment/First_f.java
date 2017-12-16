@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class First_f extends Fragment {
     private String myNickname;
-    private TextView myProfile;
+    private TextView myProfile,myspeech;
     private RecyclerView first_recyclerView;
     private F_Recycle_Adapter f_recycle_adapter;
     private ArrayList<F_Recycler_item> items;
@@ -68,6 +68,8 @@ public class First_f extends Fragment {
         View view = inflater.inflate(R.layout.first_fragment, container, false);
         myProfile = (TextView) view.findViewById(R.id.first_Myprofile_Name);
         myProfile.setText(myNickname);
+        myspeech = (TextView)view.findViewById(R.id.mySpeech);
+        myspeech.setText(Contact.myage+" , "+Contact.mysex);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Contact.EXIT);
         getContext().registerReceiver(receiver, intentFilter);
@@ -95,7 +97,7 @@ public class First_f extends Fragment {
         f_recycle_adapter = new F_Recycle_Adapter(getContext(), items);
         first_recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         first_recyclerView.setAdapter(f_recycle_adapter);
-        Contact.connect_tcp = new Connect_tcp(getActivity().getApplicationContext(), recv_listener, myNickname);
+        Contact.connect_tcp = new Connect_tcp(getContext(), recv_listener, myNickname);
         Contact.connect_tcp.start();
         return view;
     }
@@ -126,7 +128,9 @@ public class First_f extends Fragment {
                         String users[] = content.split(",");
                         items.clear();
                         for (int i = 0; i < users.length; i++) {
-                            items.add(new F_Recycler_item(users[i]));
+                            String[] split = users[i].split("/");
+                            items.add(new F_Recycler_item(split[0],split[1],split[2]));
+                            // items.add(new F_Recycler_item(users[i]));
                             Log.e("cc", users[i]);
                         }
                         f_recycle_adapter.notifyDataSetChanged();
