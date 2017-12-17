@@ -1,10 +1,12 @@
 package com.example.user.annoy_talk.ui.First_Fragment;
 
+import java.io.Serializable;
+
 /**
  * Created by choi on 2017-11-27.
  */
 
-public class F_Recycler_item {
+public class F_Recycler_item implements Serializable{
     private String name;
     private String age;
     private String sex;

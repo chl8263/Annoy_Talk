@@ -1,5 +1,6 @@
 package com.example.user.annoy_talk.ui.Select_peple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class SelectActivity extends AppCompatActivity{
     }
     private void init(){
         select = (RecyclerView)findViewById(R.id.select);
+        Intent intent = new
         
     }
 }

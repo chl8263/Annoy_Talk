@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.example.user.annoy_talk.R;
 import com.example.user.annoy_talk.interfaces.Recv_Listener;
 import com.example.user.annoy_talk.network.Connect_tcp;
-import com.example.user.annoy_talk.ui.dialog.Matching_dialog;
+import com.example.user.annoy_talk.ui.Select_peple.SelectActivity;
 import com.example.user.annoy_talk.util.Contact;
 
 import java.util.ArrayList;
@@ -81,7 +81,10 @@ public class First_f extends Fragment {
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), Matching_dialog.class);
+                Intent intent = new Intent(view.getContext(), SelectActivity.class);
+                intent.putExtra("item",items);
+                getContext().startActivity(intent);
+                /*Intent intent = new Intent(view.getContext(), Matching_dialog.class);
                 String a = "";
                 for (int i = 0; i < items.size(); i++) {
                     a += items.get(i).getName();
@@ -90,7 +93,7 @@ public class First_f extends Fragment {
                     }
                 }
                 intent.putExtra("other_name", a);
-                getContext().startActivity(intent);
+                getContext().startActivity(intent);*/
             }
         });
 
