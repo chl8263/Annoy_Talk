@@ -110,6 +110,7 @@ public class VideoActivity extends AppCompatActivity {
                         }
                     }).start();
                 } else if (flag == 1) {
+                    video_otherName.setVisibility(View.INVISIBLE);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -151,7 +152,7 @@ public class VideoActivity extends AppCompatActivity {
         } else if (split[0].equals("RECV")) {
             video_otherName.setText(split[1]);
             getname = split[1];
-            video_status.setText("영상 4 왔습니다....");
+            video_status.setText("영상 통화 왔습니다....");
             darkBackground.setVisibility(View.VISIBLE);
             flag = 1;
             v_call_status.setImageResource(R.drawable.voice_blue);
@@ -168,6 +169,7 @@ public class VideoActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Contact.videoOK)) {
                 darkBackground.setVisibility(View.INVISIBLE);
+                video_otherName.setVisibility(View.INVISIBLE);
                 video_status.setVisibility(View.INVISIBLE);
                 if (player != null) {
                     player.stop();

@@ -46,7 +46,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:textSize="18dp"
-                android:text="asd"
+
                 android:textColor="@color/color_black" />
         </RelativeLayout>
     </LinearLayout>

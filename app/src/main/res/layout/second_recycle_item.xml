@@ -12,12 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tint="@color/colorPrimary"
-            app:srcCompat="@drawable/ic_account_circle_black_40dp" />
 
         <LinearLayout
             android:id="@+id/first_RecyclerView_item_setClick"
@@ -54,6 +48,7 @@
                         tools:text="Name" />
 
                     <TextView
+                        android:text=" "
                         android:id="@+id/second_RecyclerView_Item_Content"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -66,16 +61,17 @@
                         android:gravity="top|left"
                         android:textColor="@color/color_gray"
                         android:textSize="16sp"
-                        tools:text="content" />
+                        />
                 </LinearLayout>
 
                 <TextView
+                    android:text=" "
                     android:id="@+id/second_RecyclerView_Item_Time"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="asd"
+
                     android:textColor="@color/color_black" />
             </LinearLayout>
 

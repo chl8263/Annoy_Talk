@@ -29,7 +29,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:paddingTop="5dp"
-                android:text="asd"
+
                 android:textColor="@color/color_white"
                 android:textSize="18dp" />
         </RelativeLayout>

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.user.annoy_talk.R;
 import com.example.user.annoy_talk.util.Contact;
@@ -30,7 +31,7 @@ public class Second_f extends Fragment {
     private RecyclerView second_recyclerView;
     private S_Recycle_Adapter s_recycle_adapter;
     private ArrayList<S_Recycler_item> items;
-
+    private TextView nullText;
     public Second_f() {
 
     }
@@ -68,6 +69,8 @@ public class Second_f extends Fragment {
         items = new ArrayList<S_Recycler_item>();
         s_recycle_adapter = new S_Recycle_Adapter(getContext(), items);
         second_recyclerView.setAdapter(s_recycle_adapter);
+        nullText = (TextView)view.findViewById(R.id.null_second_item);
+        null_people();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Contact.recvChatroom);
         intentFilter.addAction(Contact.EXIT);
@@ -75,7 +78,11 @@ public class Second_f extends Fragment {
         getContext().registerReceiver(receiver, intentFilter);
         return view;
     }
-
+    private void null_people(){
+        if(items.size()==0){
+            nullText.setVisibility(View.VISIBLE);
+        }else nullText.setVisibility(View.INVISIBLE);
+    }
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -103,7 +110,9 @@ public class Second_f extends Fragment {
                                 roomname = roomname.substring(0, roomname.length() - 1);
                             }
                             items.add(new S_Recycler_item(roomname, "", ""));
+
                             s_recycle_adapter.notifyDataSetChanged();
+                            null_people();
                         }
 
                     }
@@ -113,8 +122,9 @@ public class Second_f extends Fragment {
                     for (int i = 0; i < usersSplit.length; i++) {
                         if (!Contact.myname.equals(usersSplit[i])) {
                             roomname = usersSplit[i];
-                            items.add(new S_Recycler_item(roomname, "asd", "asd"));
+                            items.add(new S_Recycler_item(roomname, " ", " "));
                             s_recycle_adapter.notifyDataSetChanged();
+                            null_people();
                         }
 
                     }
@@ -142,6 +152,7 @@ public class Second_f extends Fragment {
                     }
                 }
                 s_recycle_adapter.notifyDataSetChanged();
+                null_people();
 
             }
             if (intent.getAction().equals(Contact.lastContent)) {
@@ -206,6 +217,7 @@ public class Second_f extends Fragment {
                     }
                 }
                 s_recycle_adapter.notifyDataSetChanged();
+                null_people();
             }
         }
 

@@ -48,6 +48,9 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
 
             />
+        <activity android:name=".ui.Select_peple.SelectActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            />
 
     </application>
 

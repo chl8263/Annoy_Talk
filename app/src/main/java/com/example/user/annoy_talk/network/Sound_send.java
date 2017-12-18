@@ -86,6 +86,8 @@ public class Sound_send extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
             mic = false;
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
         }
     }
 }

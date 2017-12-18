@@ -45,7 +45,7 @@
     <TextView
         android:text="asdsdasdsadsadsd"
         android:textColor="@color/color_white"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:id="@+id/video_otherName"
         android:layout_marginTop="370dp"
         android:layout_centerHorizontal="true"
