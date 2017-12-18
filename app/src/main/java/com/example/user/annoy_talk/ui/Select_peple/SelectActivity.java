@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.user.annoy_talk.R;
+import com.example.user.annoy_talk.ui.First_Fragment.F_Recycler_item;
+
+import java.util.ArrayList;
 
 /**
  * Created by choi on 2017-12-16.
@@ -23,7 +26,9 @@ public class SelectActivity extends AppCompatActivity{
     }
     private void init(){
         select = (RecyclerView)findViewById(R.id.select);
-        Intent intent = new
+        Intent intent = getIntent();
+        ArrayList<F_Recycler_item> a = (ArrayList<F_Recycler_item>)intent.getSerializableExtra("item");
+
         
     }
 }
